@@ -201,25 +201,32 @@
         /* UNO Card Animations */
         .uno-card {
             position: absolute;
-            width: 30px;
-            height: 45px;
-            background-size: contain;
-            background-repeat: no-repeat;
+            width: 25px;
+            height: 35px;
+            border-radius: 3px;
             z-index: 1;
-            opacity: 0.7;
+            opacity: 0.8;
             animation: fallingCard linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: white;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         @keyframes fallingCard {
             0% {
-                transform: translateY(-100px) rotate(0deg);
+                transform: translateY(-50px) rotate(0deg);
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(657px) rotate(360deg);
@@ -358,26 +365,36 @@
     <script>
         // Create UNO card elements
         document.addEventListener('DOMContentLoaded', function() {
-            const colors = ['red', 'blue', 'green', 'yellow'];
-            const types = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', 'draw2'];
+            const colors = [
+                {bg: '#e74c3c', text: 'R'}, // Red
+                {bg: '#3498db', text: 'B'}, // Blue
+                {bg: '#27ae60', text: 'G'}, // Green
+                {bg: '#f1c40f', text: 'Y'}, // Yellow
+                {bg: '#9b59b6', text: 'W'}, // Wild (purple)
+                {bg: '#2c3e50', text: 'D'}  // Draw (black)
+            ];
+            const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'R', 'D'];
             
             function createUnoCard() {
                 const card = document.createElement('div');
                 card.className = 'uno-card';
                 
-                // Random position and animation duration
+                // Random position and animation
                 const leftPos = Math.random() * 300;
-                const duration = 5 + Math.random() * 10;
-                const delay = Math.random() * 5;
+                const duration = 3 + Math.random() * 4;
+                const delay = Math.random() * 3;
+                const rotation = (Math.random() * 60) - 30;
                 
                 // Random card type
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                const type = types[Math.floor(Math.random() * types.length)];
+                const number = numbers[Math.floor(Math.random() * numbers.length)];
                 
                 card.style.left = leftPos + 'px';
                 card.style.animationDuration = duration + 's';
                 card.style.animationDelay = delay + 's';
-                card.style.backgroundImage = `url('https://raw.githubusercontent.com/sanfranschools/UNO/master/images/${color}_${type}.png')`;
+                card.style.backgroundColor = color.bg;
+                card.textContent = number;
+                card.style.transform = `rotate(${rotation}deg)`;
                 
                 document.querySelector('.main-container').appendChild(card);
                 
@@ -388,12 +405,12 @@
             }
             
             // Create initial cards
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 8; i++) {
                 createUnoCard();
             }
             
             // Keep creating new cards periodically
-            setInterval(createUnoCard, 2000);
+            setInterval(createUnoCard, 800);
             
             // Add hover effect to table rows
             const rows = document.querySelectorAll('.points-table tbody tr');
