@@ -14,7 +14,7 @@
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             background-color: #f5f5f5;
             padding: 5px;
@@ -44,7 +44,7 @@
             font-weight: 800;
             text-transform: uppercase;
             color: #2c3e50;
-            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
             letter-spacing: 1px;
             position: relative;
             z-index: 2;
@@ -62,17 +62,51 @@
         }
 
         /* Individual letter animations */
-        .game-time span:nth-child(1) { animation-delay: 0.1s; color: #e74c3c; }
-        .game-time span:nth-child(2) { animation-delay: 0.2s; color: #f1c40f; }
-        .game-time span:nth-child(3) { animation-delay: 0.3s; color: #27ae60; }
-        .game-time span:nth-child(4) { animation-delay: 0.4s; color: #3498db; }
-        .game-time span:nth-child(6) { animation-delay: 0.5s; color: #9b59b6; }
-        .game-time span:nth-child(7) { animation-delay: 0.6s; color: #e74c3c; }
-        .game-time span:nth-child(8) { animation-delay: 0.7s; color: #f1c40f; }
+        .game-time span:nth-child(1) {
+            animation-delay: 0.1s;
+            color: #e74c3c;
+        }
+
+        .game-time span:nth-child(2) {
+            animation-delay: 0.2s;
+            color: #f1c40f;
+        }
+
+        .game-time span:nth-child(3) {
+            animation-delay: 0.3s;
+            color: #27ae60;
+        }
+
+        .game-time span:nth-child(4) {
+            animation-delay: 0.4s;
+            color: #3498db;
+        }
+
+        .game-time span:nth-child(6) {
+            animation-delay: 0.5s;
+            color: #9b59b6;
+        }
+
+        .game-time span:nth-child(7) {
+            animation-delay: 0.6s;
+            color: #e74c3c;
+        }
+
+        .game-time span:nth-child(8) {
+            animation-delay: 0.7s;
+            color: #f1c40f;
+        }
 
         @keyframes jump {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .sub-heading {
@@ -150,12 +184,29 @@
             width: 70px;
         }
 
-        .green { color: #27ae60; }
-        .blue { color: #3498db; }
-        .red { color: #e74c3c; }
-        .purple { color: #9b59b6; }
-        .yellow { color: #f1c40f; }
-        .black { color: #2c3e50; }
+        .green {
+            color: #27ae60;
+        }
+
+        .blue {
+            color: #3498db;
+        }
+
+        .red {
+            color: #e74c3c;
+        }
+
+        .purple {
+            color: #9b59b6;
+        }
+
+        .yellow {
+            color: #f1c40f;
+        }
+
+        .black {
+            color: #2c3e50;
+        }
 
         .players-list {
             text-align: left;
@@ -191,43 +242,56 @@
             display: inline-block;
         }
 
-        .green-bg { background-color: #27ae60; }
-        .blue-bg { background-color: #3498db; }
-        .red-bg { background-color: #e74c3c; }
-        .purple-bg { background-color: #9b59b6; }
-        .yellow-bg { background-color: #f1c40f; }
-        .black-bg { background-color: #2c3e50; }
+        .green-bg {
+            background-color: #27ae60;
+        }
+
+        .blue-bg {
+            background-color: #3498db;
+        }
+
+        .red-bg {
+            background-color: #e74c3c;
+        }
+
+        .purple-bg {
+            background-color: #9b59b6;
+        }
+
+        .yellow-bg {
+            background-color: #f1c40f;
+        }
+
+        .black-bg {
+            background-color: #2c3e50;
+        }
 
         /* UNO Card Animations */
         .uno-card {
             position: absolute;
-            width: 25px;
-            height: 35px;
-            border-radius: 3px;
+            width: 30px;
+            height: 45px;
+            background-size: contain;
+            background-repeat: no-repeat;
             z-index: 1;
-            opacity: 0.8;
+            opacity: 0.7;
             animation: fallingCard linear infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 12px;
-            color: white;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-            box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         @keyframes fallingCard {
             0% {
-                transform: translateY(-50px) rotate(0deg);
+                transform: translateY(-100px) rotate(0deg);
                 opacity: 0;
             }
+
             10% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
+
             90% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
+
             100% {
                 transform: translateY(657px) rotate(360deg);
                 opacity: 0;
@@ -242,8 +306,13 @@
         }
 
         @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-3px); }
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-3px);
+            }
         }
     </style>
 </head>
@@ -251,7 +320,7 @@
 <body>
     <div class="main-container">
         <!-- UNO Cards will be inserted here by JavaScript -->
-        
+
         <h1 class="game-time-heading">
             <div class="game-time">
                 <span>G</span>
@@ -281,19 +350,6 @@
                 <tbody>
                     <tr>
                         <td class="rank first-place">1</td>
-                        <td class="team-name green">
-                            <div class="team-header">
-                                <span class="team-color green-bg"></span>
-                                Green
-                            </div>
-                        </td>
-                        <td class="players-list">
-                            <div class="player">1. Aditya-5 </div>
-                        </td>
-                        <td class="points">5</td>
-                    </tr>
-                    <tr>
-                        <td class="rank">2</td>
                         <td class="team-name blue">
                             <div class="team-header">
                                 <span class="team-color blue-bg"></span>
@@ -301,38 +357,27 @@
                             </div>
                         </td>
                         <td class="players-list">
-                            <div class="player">1. Chiti-4</div>
+                            <div class="player">1. chiti-4 </div>
+                            <div class="player">2. Seven-5 </div>
                         </td>
-                        <td class="points">4</td>
+                        <td class="points">9</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">2</td>
+                        <td class="team-name green">
+                            <div class="team-header">
+                                <span class="team-color green-bg"></span>
+                                Green
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Aditya 5</div>
+                            <div class="player">2. hmk-2</div>
+                        </td>
+                        <td class="points">7</td>
                     </tr>
                     <tr>
                         <td class="rank">3</td>
-                        <td class="team-name red">
-                            <div class="team-header">
-                                <span class="team-color red-bg"></span>
-                                Red
-                            </div>
-                        </td>
-                        <td class="players-list">
-                            <div class="player">1. Top G-3</div>
-                        </td>
-                        <td class="points">3</td>
-                    </tr>
-                    <tr>
-                        <td class="rank">4</td>
-                        <td class="team-name purple">
-                            <div class="team-header">
-                                <span class="team-color purple-bg"></span>
-                                Purple
-                            </div>
-                        </td>
-                        <td class="players-list">
-                            <div class="player">1. Malu-2</div>
-                        </td>
-                        <td class="points">2</td>
-                    </tr>
-                    <tr>
-                        <td class="rank">5</td>
                         <td class="team-name yellow">
                             <div class="team-header">
                                 <span class="team-color yellow-bg"></span>
@@ -341,11 +386,27 @@
                         </td>
                         <td class="players-list">
                             <div class="player">1. Suii-1</div>
+                            <div class="player">1. Priya -4 </div>
+
                         </td>
-                        <td class="points">1</td>
+                        <td class="points">5</td>
                     </tr>
                     <tr>
-                        <td class="rank">6</td>
+                        <td class="rank">4</td>
+                        <td class="team-name red">
+                            <div class="team-header">
+                                <span class="team-color red-bg"></span>
+                                Red
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Top-g -3</div>
+                            <div class="player">2. Akku-1 </div>
+                        </td>
+                        <td class="points">4</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">5</td>
                         <td class="team-name black">
                             <div class="team-header">
                                 <span class="team-color black-bg"></span>
@@ -354,8 +415,23 @@
                         </td>
                         <td class="players-list">
                             <div class="player">1. Orhaan-0</div>
+                            <div class="player">2. Aaju-3 </div>
                         </td>
-                        <td class="points">0</td>
+                        <td class="points">3</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">6</td>
+                        <td class="team-name purple">
+                            <div class="team-header">
+                                <span class="team-color purple-bg"></span>
+                                Purple
+                            </div>
+                        </td>
+                        <td class="players-list">
+                            <div class="player">1. Malu-2</div>
+                            <div class="player">2. Sam-0 </div>
+                        </td>
+                        <td class="points">2</td>
                     </tr>
                 </tbody>
             </table>
@@ -364,54 +440,44 @@
 
     <script>
         // Create UNO card elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const colors = [
-                {bg: '#e74c3c', text: 'R'}, // Red
-                {bg: '#3498db', text: 'B'}, // Blue
-                {bg: '#27ae60', text: 'G'}, // Green
-                {bg: '#f1c40f', text: 'Y'}, // Yellow
-                {bg: '#9b59b6', text: 'W'}, // Wild (purple)
-                {bg: '#2c3e50', text: 'D'}  // Draw (black)
-            ];
-            const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'S', 'R', 'D'];
-            
+        document.addEventListener('DOMContentLoaded', function () {
+            const colors = ['red', 'blue', 'green', 'yellow'];
+            const types = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', 'draw2'];
+
             function createUnoCard() {
                 const card = document.createElement('div');
                 card.className = 'uno-card';
-                
-                // Random position and animation
+
+                // Random position and animation duration
                 const leftPos = Math.random() * 300;
-                const duration = 3 + Math.random() * 4;
-                const delay = Math.random() * 3;
-                const rotation = (Math.random() * 60) - 30;
-                
+                const duration = 5 + Math.random() * 10;
+                const delay = Math.random() * 5;
+
                 // Random card type
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                const number = numbers[Math.floor(Math.random() * numbers.length)];
-                
+                const type = types[Math.floor(Math.random() * types.length)];
+
                 card.style.left = leftPos + 'px';
                 card.style.animationDuration = duration + 's';
                 card.style.animationDelay = delay + 's';
-                card.style.backgroundColor = color.bg;
-                card.textContent = number;
-                card.style.transform = `rotate(${rotation}deg)`;
-                
+                card.style.backgroundImage = `url('https://raw.githubusercontent.com/sanfranschools/UNO/master/images/${color}_${type}.png')`;
+
                 document.querySelector('.main-container').appendChild(card);
-                
+
                 // Remove card after animation completes
                 setTimeout(() => {
                     card.remove();
                 }, (duration + delay) * 1000);
             }
-            
+
             // Create initial cards
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 5; i++) {
                 createUnoCard();
             }
-            
+
             // Keep creating new cards periodically
-            setInterval(createUnoCard, 800);
-            
+            setInterval(createUnoCard, 2000);
+
             // Add hover effect to table rows
             const rows = document.querySelectorAll('.points-table tbody tr');
             rows.forEach(row => {
