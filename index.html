@@ -527,6 +527,148 @@
                 transform: translateX(100%);
             }
         }
+
+        /* WINNING CELEBRATION STYLES */
+        .winner-celebration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #00a8ff;
+            opacity: 0.8;
+            animation: confettiFall 5s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(657px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .winner-banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 10, 20, 0.9);
+            border: 2px solid #00a8ff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: #00a8ff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.7);
+            opacity: 0;
+            animation: bannerAppear 3s 1s forwards;
+            z-index: 5;
+        }
+
+        @keyframes bannerAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            20%, 80% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        .winner-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 168, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 3;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        .winner-crown {
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            font-size: 1.5rem;
+            animation: crownFloat 2s infinite alternate;
+        }
+
+        @keyframes crownFloat {
+            0% {
+                transform: translateY(0) rotate(-15deg);
+            }
+            100% {
+                transform: translateY(-5px) rotate(15deg);
+            }
+        }
+
+        .blue-team-row {
+            animation: bluePulse 2s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes bluePulse {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 168, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 168, 255, 0.7);
+            }
+        }
+
+        .winner-tag {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #00a8ff;
+            color: #0a0a12;
+            font-size: 0.6rem;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            animation: tagPulse 1.5s infinite;
+        }
+
+        @keyframes tagPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
     </style>
 </head>
 
@@ -547,6 +689,14 @@
         <!-- Grid overlay for table -->
         <div class="grid-overlay"></div>
 
+        <!-- Winner celebration elements -->
+        <div class="winner-celebration" id="winnerCelebration"></div>
+        <div class="winner-highlight"></div>
+        <div class="winner-banner">
+            <div>Blue Team Wins!</div>
+            <div style="font-size: 0.8rem;">Congratulations!</div>
+        </div>
+
         <h1 class="game-time-heading glitch-effect">
             GAME TIME
         </h1>
@@ -564,12 +714,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="rank first-place">1</td>
+                    <tr class="blue-team-row">
+                        <td class="rank first-place">1<span class="winner-tag">WINNER</span></td>
                         <td class="team-name blue">
                             <div class="team-header">
                                 <span class="team-color blue-bg"></span>
                                 Blue
+                                <span class="winner-crown">👑</span>
                             </div>
                             <div class="energy-bar-container">
                                 <div class="energy-bar" style="width: 100%; background-color: #00ff9d;"></div>
@@ -583,7 +734,6 @@
                             <div class="player">5. Mist-4 </div>
                             <div class="player">6. Albin-2 </div>
                             <div class="player">7. Bibin-4 </div>
-
                         </td>
                         <td class="points">23</td>
                     </tr>
@@ -628,7 +778,6 @@
                             <div class="player">5. Damon-2 </div>
                             <div class="player">6. BBfana -4 </div>
                             <div class="player">7. Shaz-1 </div>
-
                         </td>
                         <td class="points">21</td>
                     </tr>
@@ -779,10 +928,32 @@
                 });
             }
 
+            // Create winner celebration confetti
+            function createWinnerCelebration() {
+                const celebration = document.getElementById('winnerCelebration');
+                const confettiCount = 50;
+                const colors = ['#00a8ff', '#00f2ff', '#ffffff', '#b56bff', '#ffe600'];
+
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = (Math.random() * 100) + '%';
+                    confetti.style.animationDelay = (Math.random() * 5) + 's';
+                    confetti.style.animationDuration = (3 + Math.random() * 4) + 's';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = (5 + Math.random() * 10) + 'px';
+                    confetti.style.height = (5 + Math.random() * 10) + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+
+                    celebration.appendChild(confetti);
+                }
+            }
+
             // Initialize all effects
             createBinaryRain();
             createDataLines();
             updateTeamEnergy();
+            createWinnerCelebration();
 
             // Add hover effect to highlight team rows with data connections
             const rows = document.querySelectorAll('.points-table tbody tr');
